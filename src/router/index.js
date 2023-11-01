@@ -7,6 +7,11 @@ const routes = [
     component: ContactBook,
   },
   {
+    path: "/contacts",
+    name: "contact.add",
+    component: () => import("@/views/CreateContact.vue"),
+  },
+  {
     path: "/contacts/:id",
     name: "contact.edit",
     component: () => import("@/views/ContactEdit.vue"),

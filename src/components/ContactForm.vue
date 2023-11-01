@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { onBeforeMount, ref } from "vue";
 import * as yup from "yup";
 
 export default {
@@ -74,6 +74,7 @@ export default {
     contact: { type: Object, required: true },
   },
   setup(props, context) {
+    const contactLocal = ref(props.contact);
     const contactFormSchema = yup.object().shape({
       name: yup
         .string()
@@ -93,12 +94,24 @@ export default {
         ),
     });
 
-    const contactLocal = ref(props.contact);
-    console.log(contactLocal.value);
+
+    onBeforeMount(() =>{
+      if(!contactLocal.value){
+        contactLocal.value = {
+          _id: "",
+          name: "",
+          email: "",
+          address: "",
+          phone: "",
+          favorite: false,
+        };
+      }
+    })
 
     const { emit } = context;
 
     const submitContact = () => {
+      console.log(contactLocal.value);
       emit("submit:contact", contactLocal.value);
     };
 
