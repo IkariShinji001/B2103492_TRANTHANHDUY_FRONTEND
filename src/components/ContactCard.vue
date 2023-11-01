@@ -21,9 +21,6 @@
       <i v-if="contact.favorite" class="fa-solid fa-heart"></i>
       <i v-else class="fa-solid fa-x"></i>
     </div>
-    <div class="pt-1 update">
-      <strong> <i class="fa-regular fa-pen-to-square"></i> Hiệu chỉnh</strong>
-    </div>
   </div>
 </template>
 
@@ -39,16 +36,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.update {
-  display: inline-block;
-  background-color: rgb(227, 190, 44);
-  display: flex;
-  width: 30%;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  border-radius: 5px;
-}
-</style>

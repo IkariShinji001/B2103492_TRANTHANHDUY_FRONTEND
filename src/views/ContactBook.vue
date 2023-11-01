@@ -16,7 +16,7 @@
       <p v-else>Không có liên hệ nào.</p>
       <div class="mt-3 row justify-content-around align-items-center">
         <button class="btn btn-sm btn-primary" @click="refreshList()">
-         <i class="fa-solid fa-asterisk"></i> Làm mới
+          <i class="fa-solid fa-asterisk"></i> Làm mới
         </button>
         <button class="btn btn-sm btn-success" @click="goToAddContact">
           <i class="fas fa-plus"></i> Thêm mới
@@ -33,6 +33,16 @@
           <i class="fas fa-address-card"></i>
         </h4>
         <contact-card :contact="activeContact"> </contact-card>
+        <router-link
+          :to="{
+            name: 'contact.edit',
+            params: { id: activeContact._id },
+          }"
+        >
+          <span class="mt-2 badge badge-warning">
+            <i class="fas fa-edit"></i> Hiệu chỉnh</span
+          >
+        </router-link>
       </div>
     </div>
   </div>
@@ -43,7 +53,7 @@ import ContactCard from "../components/ContactCard.vue";
 import ContactList from "../components/ContactList.vue";
 import ContactService from "../services/contact.service";
 import { ref, computed, onBeforeMount, watch } from "vue";
-import {useRouter} from 'vue-router';
+import { useRouter } from "vue-router";
 export default {
   components: {
     "input-search": InputSearch,
@@ -123,8 +133,8 @@ export default {
     }
 
     const goToAddContact = () => {
-      router.push({name: "contact.add"})
-    }
+      router.push({ name: "contact.add" });
+    };
 
     return {
       contacts,
@@ -137,7 +147,7 @@ export default {
       refreshList,
       removeAllContacts,
       filteredContactsCount,
-      goToAddContact
+      goToAddContact,
     };
   },
 };
